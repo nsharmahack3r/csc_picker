@@ -708,13 +708,22 @@ class CSCPickerState extends State<CSCPicker> {
           var citiesName = ci.map((item) => item.name).toList();
           for (var cityName in citiesName) {
             //print(cityName.toString());
-            _cities.add(cityName.toString());
+            _cities.add(_nameFilter(cityName.toString()));
           }
         });
       });
     });
     _cities.sort((a, b) => a!.compareTo(b!));
     return _cities;
+  }
+
+  String _nameFilter(String name){
+    name = name.replaceAll('ā','a');
+    name = name.replaceAll('ē','e');
+    name = name.replaceAll('ī','i');
+    name = name.replaceAll('ō','o');
+    name = name.replaceAll('ū','u');
+    return name;
   }
 
   ///get methods to catch newly selected country state and city and populate state based on country, and city based on state
